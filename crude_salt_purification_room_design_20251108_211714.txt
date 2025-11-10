@@ -1,0 +1,93 @@
+Of course. Here is the recommended laboratory layout and placement plan for the crude salt purification experiment.
+
+### 1. High-Level Placement Strategy
+
+The strategy is to create a logical, safe workflow following the standard steps of crude salt purification (dissolution, filtration, evaporation, drying). The room is divided into three primary zones:
+
+*   **Wet Chemistry Zone (North-East):** Centered around the fume hood for handling potentially dusty or fume-producing steps (dissolution, heating, evaporation).
+*   **Utility & Wash-Up Zone (North-West):** A dedicated area for the sink, providing water and waste disposal, separated from active chemical work.
+*   **Benchtop & Analysis Zone (Central/South):** An open, well-ventilated area for safe setup, filtration, and final product handling, ensuring clear access to the exit.
+
+This linear workflow from entry (south) to final processing (north-east) minimizes cross-contamination and traffic conflicts.
+
+---
+
+### 2. Explicit Placement List
+
+*   **Fume Hood:** Upper-right (north-east) corner. *Justification: As per user constraint. This places the primary source of hazardous vapors and dust farthest from the main exit and in a dedicated corner with dedicated ventilation.*
+*   **Sink:** On the north wall, centered between the west wall and the fume hood. *Justification: As per user constraint. Central location on the north wall provides easy access from both the benchtop and fume hood zones without being directly in the splash zone of the hood.*
+*   **Main Door:** On the south wall, centered. *Justification: As per user constraint. This is the primary emergency egress path and must be kept completely unobstructed.*
+*   **Hot Plate / Heating Mantle:** Inside the fume hood, on the fume hood work surface. *Justification: All heating of solutions during dissolution and evaporation must be performed under active ventilation to capture any fumes or splatters.*
+*   **Büchner Funnel & Vacuum Flask:** On the central benchtop, at least 1 meter from the fume hood and hot plates. *Justification: Vacuum filtration is a cold process. Placing it on the open benchtop provides a stable, spacious work area away from heat sources and allows for easy setup and breakdown of the apparatus. It keeps the fume hood free for active hazard operations.*
+*   **Glassware (Beakers, Flasks, Filter Paper):** Stored in cabinets above or below the central benchtop. Actively used items are placed on the central benchtop during the filtration and setup steps. *Justification: Central storage promotes an organized workspace and minimizes movement across the lab with loaded glassware.*
+*   **Stir Plate & Stir Bars:** Stored in a benchtop cupboard. Used on the central benchtop for initial mixing or inside the fume hood if mixing volatile components. *Justification: Flexibility to perform safe mixing in the appropriate location based on the chemical's properties.*
+*   **Spatulas, Scoopulas:** Stored in a drawer under the central benchtop. *Justification: Easy access for weighing and transferring solid crude salt.*
+*   **Wash Bottle (Deionized Water):** On the central benchtop, near the filtration setup. *Justification: Needed for rinsing during the filtration step.*
+*   **Waste Beaker (for mother liquor/filtrate):** Inside the fume hood, next to the hot plate. *Justification: The waste solution from evaporation may contain concentrated impurities and should be handled under ventilation until properly disposed of.*
+
+---
+
+### 3. Safety & Utility Hookups Needed
+
+*   **Fume Hood:**
+    *   **Ventilation:** Dedicated exhaust duct (required).
+    *   **Electrical:** Minimum of two 110V outlets inside the hood for hot plate and stirrer.
+    *   **Gas:** Optional, but a gas tap is useful for Bunsen burners (alternative to hot plates).
+    *   **Water/Drain:** Not typically needed inside for this experiment.
+*   **Sink:**
+    *   **Water:** Hot and cold taps.
+    *   **Drain:** Required.
+    *   **Electrical:** One outlet above the counter for safety (away from sink splash).
+*   **Central Benchtop:**
+    *   **Electrical:** Multiple 110V outlets along the backplash for stir plates, etc.
+    *   **Gas:** Optional gas taps if Bunsen burners are preferred.
+*   **General Room:**
+    *   **Ventilation:** General room air supply to maintain negative pressure.
+    *   **Safety Equipment:** Emergency eyewash station on the north wall, next to the sink. Safety shower on the west wall, easily accessible from all zones. Fire extinguisher (ABC type) near the main door on the south wall and one near the fume hood.
+
+---
+
+### 4. Key Spacing and Clearance Rules
+
+*   **Egress:** A minimum 1.2-meter clear aisle must be maintained from the main door to all work zones. This path must be completely unobstructed.
+*   **Fume Hood Clearance:** Maintain at least 0.3 meters of clear space in front of the fume hood sash for safe, unhindered operation.
+*   **Sink Area:** Keep the counter space immediately adjacent to the sink (approx. 0.5m on either side) clear of electrical equipment to prevent water damage and electrocution risk.
+*   **Benchtop Workspace:** Allocate at least 1.5 linear meters of clear benchtop space in the central zone for setting up filtration apparatus and other non-hazardous steps.
+*   **Under-bench Storage:** Ensure knee spaces are available for seated work, especially at the central benchtop.
+
+---
+
+### 5. ASCII Floor Plan Sketch
+
+```
++---------------------------------------------------------+
+| North Wall                                              |
+|                                                         |
+|  [ Sink ]         [Eyewash]        | FUME  |           |
+|                                    | HOOD  |           |
+|                                    |       |           |
++-----+-------------------------------+-------+-----------+
+|     |                               |                   |
+|     |                               |                   |
+|  W  |     CENTRAL BENCHTOP          |                   |
+|  E  |     (Filtration, Setup)       |                   |
+|  S  |                               |                   |
+|  T  |                               |                   |
+|     |                               |                   |
+|     +-------------------------------+                   |
+|     |                               |                   |
+|  W  |                               |                   |
+|  A  |           AISLE               |                   |
+|  L  |       (Clear Egress)          |                   |
+|  L  |                               |                   |
+|     |                               |                   |
++-----+-------------------------------+-------------------+
+| South Wall                                              |
+|                  [ MAIN DOOR ]                          |
+|                 [Fire Ext.]                             |
++---------------------------------------------------------+
+```
+
+**Legend:**
+*   `[ FUME HOOD ]`: Fixed installation, North-East corner.
+*   `[ Sink ]`:

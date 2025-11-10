@@ -1,0 +1,150 @@
+[
+  {
+    "id": "lab_bench_side_240",
+    "name": "边实验台（靠墙）(240cm)",
+    "category": "Workstation",
+    "dimensions_2d": {
+      "width": 240,
+      "depth": 75
+    },
+    "properties": {
+      "movable": false,
+      "required_clearance": {
+        "front": 100,
+        "sides": 10,
+        "rear": 0
+      },
+      "connections": ["electricity", "water"]
+    }
+  },
+  {
+    "id": "refrigerator_lab_std",
+    "name": "实验室冰箱 (标准单门)",
+    "category": "Storage",
+    "dimensions_2d": {
+      "width": 70,
+      "depth": 80
+    },
+    "properties": {
+      "movable": true,
+      "storage_type": "cold_storage_4C",
+      "required_clearance": {
+        "front": 80,
+        "sides": 10,
+        "rear": 15
+      },
+      "connections": ["electricity"]
+    }
+  },
+  {
+    "id": "freezer_lab_minus80",
+    "name": "超低温冰箱 (-80°C)",
+    "category": "Storage",
+    "dimensions_2d": {
+      "width": 100,
+      "depth": 90
+    },
+    "properties": {
+      "movable": true,
+      "storage_type": "ultra_low_temp",
+      "required_clearance": {
+        "front": 100,
+        "sides": 30,
+        "rear": 30
+      },
+      "connections": ["electricity", "backup_power"]
+    }
+  },
+  {
+    "id": "biosafety_cabinet_b2_120",
+    "name": "生物安全柜 (B2型, 120cm)",
+    "category": "Workstation/Safety",
+    "dimensions_2d": {
+      "width": 130,
+      "depth": 90
+    },
+    "properties": {
+      "movable": false,
+      "required_clearance": {
+        "front": 120,
+        "sides": 30,
+        "rear": 10
+      },
+      "connections": ["electricity", "ventilation_external"]
+    }
+  },
+  {
+    "id": "gc_ms_basic",
+    "name": "气相色谱-质谱联用仪 (GC-MS)",
+    "category": "Apparatus",
+    "dimensions_2d": {
+      "width": 140,
+      "depth": 80
+    },
+    "properties": {
+      "movable": false,
+      "note": "通常放置在实验台上，但此处为简化模型，表示其占地面积",
+      "required_clearance": {
+        "front": 100,
+        "sides": 50,
+        "rear": 30
+      },
+      "connections": ["electricity", "gas_He", "data", "ventilation"]
+    }
+  },
+  {
+    "id": "balance_table_anti_vibration",
+    "name": "防震天平桌",
+    "category": "Workstation",
+    "dimensions_2d": {
+      "width": 90,
+      "depth": 60
+    },
+    "properties": {
+      "movable": false,
+      "required_clearance": {
+        "front": 80,
+        "sides": 30,
+        "rear": 30
+      },
+      "connections": []
+    }
+  },
+  {
+    "id": "lab_cart_3_tier",
+    "name": "三层实验推车",
+    "category": "Utility",
+    "dimensions_2d": {
+      "width": 80,
+      "depth": 45
+    },
+    "properties": {
+      "movable": true,
+      "required_clearance": {
+        "front": 10,
+        "sides": 10,
+        "rear": 10
+      },
+      "connections": []
+    }
+  },
+  {
+    "id": "waste_container_solvent",
+    "name": "废液收集桶 (20L)",
+    "category": "Utility/Safety",
+    "dimensions_2d": {
+      "width": 35,
+      "depth": 35
+    },
+    "properties": {
+      "movable": true,
+      "storage_type": "solvent_waste",
+      "required_clearance": {
+        "front": 30,
+        "sides": 30,
+        "rear": 30
+      },
+      "connections": []
+    }
+  }
+]
