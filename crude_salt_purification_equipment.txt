@@ -1,0 +1,95 @@
+Equipment List for crude salt purification
+==================================================
+
+Large Fixed Equipment and Installations:
+----------------------------------------
+
+Fume Hood:
+To provide ventilation when handling hot solutions or if any volatile impurities are present, preventing inhalation of fumes. It should be a standard chemical fume hood with a working sash.
+
+Lab Bench:
+To provide a stable, chemical-resistant, and non-flammable work surface for the entire setup. The surface should be epoxy resin or similar material.
+
+Sink with Running Water:
+For diluting chemicals, cleaning glassware, and supplying water for the experiment. Must have a functional trap and be connected to the laboratory's waste drainage system.
+
+Safety Shower and Eyewash Station:
+For emergency decontamination in case of chemical spills on the body or in the eyes. Must be accessible within 10 seconds of the work area and tested regularly.
+
+Fixed Gas Outlet (Bunsen Burner Gas Tap):
+If using a Bunsen burner instead of a hot plate, this provides a controlled source of natural gas or methane. Ensure the hose is in good condition and there are no leaks.
+
+Chemical Storage Cabinet:
+For the safe storage of chemicals (e.g., crude salt sample) when not in use, protecting them from environmental factors and preventing unauthorized access.
+
+Fire Extinguisher:
+Located near the exit or work area for use on small, contained fires. Must be a Class ABC type suitable for electrical, flammable liquid, and common combustible fires.
+
+Small Containers and Instruments:
+----------------------------------------
+
+Experiment: Purification of Crude Salt (via Dissolution, Filtration, and Crystallization):
+This process involves dissolving the crude salt in water, filtering out insoluble impurities, and then evaporating the water to obtain purified crystals.
+
+Beakers (250 mL and 400 mL):
+The 250 mL beaker is for dissolving the crude salt. The 400 mL beaker is used as a receiving vessel during filtration. They are made of borosilicate glass to withstand thermal stress.
+
+Erlenmeyer Flask (250 mL):
+Can be used as an alternative to a beaker for heating the solution, as its conical shape reduces splashing and evaporation. Made of heat-resistant borosilicate glass.
+
+Glass Stirring Rod:
+For stirring the mixture to aid dissolution and for guiding the flow of liquid during filtration ("rodding"). Ensure the ends are fire-polished to prevent scratching glassware.
+
+Filter Funnel:
+To hold the filter paper during the gravity filtration step. A standard 75mm diameter glass or plastic funnel is typical.
+
+Evaporating Dish:
+For evaporating the filtered salt solution to dryness to obtain purified crystals. It has a wide surface area to facilitate evaporation and is made of porcelain to withstand direct heat.
+
+Watch Glass:
+To cover the beaker during dissolution to prevent contamination and minimize evaporation, or to weigh the crude and purified salt samples.
+
+Analytical Balance:
+To accurately weigh the initial crude salt sample and the final purified salt product. Should have a precision of at least 0.001g. Ensure the balance is calibrated and on a stable, level surface.
+
+Graduated Cylinder (100 mL):
+For measuring a specific volume of distilled water for the dissolution step. Provides more accurate volume measurement than a beaker. Read the meniscus at eye level for accuracy.
+
+Spatula:
+For transferring solid crude salt from its container to the weighing boat and then to the beaker. Use a clean, dry spatula to avoid cross-contamination.
+
+Weighing Boats or Filter Paper:
+To hold the salt while weighing on the balance, preventing direct contact with the balance pan and ensuring accurate measurement.
+
+Hot Plate:
+To gently heat the salt solution to speed up dissolution and then to heat the evaporating dish to evaporate the water. Preferable to an open flame for safer, more controlled heating. Ensure the surface is clean and dry.
+
+Bunsen Burner:
+An alternative to a hot plate for heating the solution and evaporating dish. Provides a high, direct flame. Exercise extreme caution with open flames; tie back long hair and secure loose clothing.
+
+Tripod Stand and Wire Gauze:
+To support the beaker or evaporating dish over the Bunsen burner flame. The wire gauze disperses the heat evenly and protects the glassware from direct flame.
+
+Ice Bath (if needed):
+A container filled with ice and water to cool the solution rapidly, potentially promoting crystallization. Not always necessary for salt purification.
+
+Lab Coat:
+To protect skin and personal clothing from chemical spills and splashes. It should be made of a flame-resistant material like cotton.
+
+Safety Goggles:
+To protect the eyes from chemical splashes, especially during heating, pouring, and stirring. They must provide a secure, wrap-around seal.
+
+Heat-Resistant Gloves (Tongs):
+For handling hot glassware such as the beaker, evaporating dish, or hot plate. Tongs should be used in conjunction with gloves for a secure grip on hot objects.
+
+Waste Beaker (250 mL):
+For collecting the filtered insoluble impurities and any waste solutions for proper disposal. Clearly label this container to avoid confusion with experimental solutions.
+
+Wash Bottle (filled with Distilled Water):
+For rinsing residual salt from the stirring rod and funnel into the main solution, ensuring no product is lost.
+
+Filter Paper:
+Placed in the funnel to trap solid impurities during filtration. Use qualitative filter paper of the correct diameter (e.g., 11 cm) for the funnel. Do not overfill with solids.
+
+Glass Dropper:
+For adding small amounts of water to wash down crystals or for testing the solution if needed. Ensure the rubber bulb is not cracked or perished.

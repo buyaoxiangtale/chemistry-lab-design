@@ -53,7 +53,17 @@ def design_room(experiment_name: str, constraints: str, temperature: float = 0.2
     # Build a prompt for the layout designer
     user_prompt = build_design_prompt(experiment_name, large_equipment, small_equipment, constraints)
 
-    system_message = "You are an expert laboratory planner with knowledge of safety codes and efficient lab layouts. Provide clear, actionable placement instructions and a simple floor-plan sketch or JSON layout."
+    system_message = """You are an expert laboratory planner with knowledge of safety codes and efficient lab layouts. 
+    
+    Critical Requirements:
+    1. NEVER allow any overlap between large equipment items - ensure each piece has its required clearance space
+    2. Consider the dimensions_2d (width and depth) of each large equipment when placing them
+    3. Check that the required_clearance values for each item do not overlap with other equipment's space
+    4. For any two large equipment items A and B, their positions must satisfy:
+       - Distance between A and B >= max(A's clearance + B's clearance)
+       - No intersection between their footprints (width × depth)
+    
+    Provide clear, actionable placement instructions and a JSON layout that explicitly specifies coordinates for each large equipment to prevent any overlap."""
 
     try:
         response = client.chat.completions.create(

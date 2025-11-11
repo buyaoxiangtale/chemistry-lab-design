@@ -1,0 +1,67 @@
+{
+  "room": {
+    "width_m": 4.0,
+    "depth_m": 3.0,
+    "units": "meters"
+  },
+  "placements": [
+    {
+      "item_name": "边实验台（靠墙）(240cm)",
+      "category": "Workstation",
+      "x_m": 0.0,
+      "y_m": 0.0,
+      "orientation": "north",
+      "utilities": [
+        "electricity",
+        "water"
+      ],
+      "clearance_m": 1.0,
+      "justification": "Fixed wall bench along north wall with front clearance"
+    },
+    {
+      "item_name": "防震天平桌",
+      "category": "Workstation",
+      "x_m": 2.5,
+      "y_m": 0.0,
+      "orientation": "north",
+      "utilities": [],
+      "clearance_m": 0.8,
+      "justification": "Anti-vibration table placed with required clearance from other equipment"
+    },
+    {
+      "item_name": "Top-Loading Balance (±0.01 g)",
+      "category": "Instrument",
+      "x_m": 2.6,
+      "y_m": 0.1,
+      "orientation": "north",
+      "utilities": [
+        "electricity"
+      ],
+      "clearance_m": 0.3,
+      "justification": "Placed on anti-vibration table"
+    },
+    {
+      "item_name": "Hot Plate / Stirrer",
+      "category": "Equipment",
+      "x_m": 0.5,
+      "y_m": 1.0,
+      "orientation": "north",
+      "utilities": [
+        "electricity"
+      ],
+      "clearance_m": 0.4,
+      "justification": "Central location on bench with clearance for operation"
+    },
+    {
+      "item_name": "Tripod Stand",
+      "category": "Support",
+      "x_m": 1.5,
+      "y_m": 1.0,
+      "orientation": "north",
+      "utilities": [],
+      "clearance_m": 0.3,
+      "justification": "Positioned for use with heating equipment"
+    }
+  ],
+  "recommendations": "Remaining small movable equipment (beakers, flasks, glassware, safety equipment) should be stored in wall cabinets or on mobile carts. Limited bench space requires careful equipment rotation during experiment workflow. Consider adding wall-mounted storage for frequently used items like safety goggles, lab coats, and small glassware."
+}

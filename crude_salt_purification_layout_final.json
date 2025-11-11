@@ -1,0 +1,124 @@
+{
+  "room": {
+    "width_m": 4,
+    "depth_m": 3,
+    "units": "meters"
+  },
+  "placements": [
+    {
+      "item_name": "Electronic Balance (0.01 g precision)",
+      "category": "Small movable equipment",
+      "x_m": 0.1,
+      "y_m": 0.1,
+      "orientation": "north",
+      "utilities": [
+        "electricity"
+      ],
+      "clearance_m": 0.3,
+      "justification": "Stable location away from vibration sources, near entrance for easy access"
+    },
+    {
+      "item_name": "Hot Plate",
+      "category": "Small movable equipment",
+      "x_m": 1.2,
+      "y_m": 0.1,
+      "orientation": "north",
+      "utilities": [
+        "electricity"
+      ],
+      "clearance_m": 0.4,
+      "justification": "Central location with good ventilation, away from balance"
+    },
+    {
+      "item_name": "Ring Stand and Iron Ring",
+      "category": "Small movable equipment",
+      "x_m": 2.8,
+      "y_m": 0.1,
+      "orientation": "north",
+      "utilities": [],
+      "clearance_m": 0.3,
+      "justification": "Right side placement for filtration setup"
+    },
+    {
+      "item_name": "Waste Beaker or Disposal Container",
+      "category": "Small movable equipment",
+      "x_m": 3.6,
+      "y_m": 0.1,
+      "orientation": "north",
+      "utilities": [],
+      "clearance_m": 0.2,
+      "justification": "Corner placement for waste collection"
+    },
+    {
+      "item_name": "Beakers (250 mL and 400 mL)",
+      "category": "Small movable equipment",
+      "x_m": 0.1,
+      "y_m": 1.0,
+      "orientation": "north",
+      "utilities": [],
+      "clearance_m": 0.2,
+      "justification": "Left bench area near water source"
+    },
+    {
+      "item_name": "Erlenmeyer Flask (250 mL)",
+      "category": "Small movable equipment",
+      "x_m": 0.8,
+      "y_m": 1.0,
+      "orientation": "north",
+      "utilities": [],
+      "clearance_m": 0.2,
+      "justification": "Adjacent to beakers for alternative use"
+    },
+    {
+      "item_name": "Graduated Cylinder (100 mL)",
+      "category": "Small movable equipment",
+      "x_m": 1.5,
+      "y_m": 1.0,
+      "orientation": "north",
+      "utilities": [],
+      "clearance_m": 0.2,
+      "justification": "Central measurement station"
+    },
+    {
+      "item_name": "Filter Funnel",
+      "category": "Small movable equipment",
+      "x_m": 2.2,
+      "y_m": 1.0,
+      "orientation": "north",
+      "utilities": [],
+      "clearance_m": 0.2,
+      "justification": "Near ring stand for filtration setup"
+    },
+    {
+      "item_name": "Wash Bottle (filled with distilled water)",
+      "category": "Small movable equipment",
+      "x_m": 2.9,
+      "y_m": 1.0,
+      "orientation": "north",
+      "utilities": [],
+      "clearance_m": 0.2,
+      "justification": "Right side placement for rinsing operations"
+    },
+    {
+      "item_name": "Lab Coat or Apron",
+      "category": "Small movable equipment",
+      "x_m": 0.1,
+      "y_m": 2.0,
+      "orientation": "north",
+      "utilities": [],
+      "clearance_m": 0.1,
+      "justification": "Near entrance for easy donning"
+    },
+    {
+      "item_name": "Safety Goggles",
+      "category": "Small movable equipment",
+      "x_m": 0.5,
+      "y_m": 2.0,
+      "orientation": "north",
+      "utilities": [],
+      "clearance_m": 0.1,
+      "justification": "Adjacent to lab coat for complete PPE access"
+    }
+  ],
+  "recommendations": "The following items could not be placed due to space constraints and should be stored in wall-mounted cabinets or mobile carts: Glass Stirring Rod, Watch Glass, Spatula, Wire Gauze, Filter Paper, Heat-Resistant Gloves, Weighing Boats or Paper, Beaker Tongs, Test Tube Brush. Consider using vertical storage solutions to maximize workspace."
+}

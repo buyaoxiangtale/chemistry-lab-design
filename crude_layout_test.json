@@ -1,0 +1,104 @@
+{
+  "room": {
+    "width_m": 5.0,
+    "depth_m": 4.0,
+    "units": "meters"
+  },
+  "placements": [
+    {
+      "item_name": "fume_hood",
+      "category": "fixed",
+      "x_m": 1.0,
+      "y_m": 3.8,
+      "orientation": "south",
+      "utilities": [
+        "electricity",
+        "ventilation"
+      ],
+      "clearance_m": 1.2,
+      "justification": "Fixed on north wall for ventilation duct access"
+    },
+    {
+      "item_name": "sink",
+      "category": "fixed",
+      "x_m": 3.5,
+      "y_m": 3.8,
+      "orientation": "south",
+      "utilities": [
+        "water",
+        "drain"
+      ],
+      "clearance_m": 0.8,
+      "justification": "Fixed on north wall for plumbing connections"
+    },
+    {
+      "item_name": "work_bench",
+      "category": "fixed",
+      "x_m": 1.0,
+      "y_m": 2.6,
+      "orientation": "north",
+      "utilities": [
+        "electricity"
+      ],
+      "clearance_m": 0.9,
+      "justification": "Adjacent to fume hood for sample preparation"
+    },
+    {
+      "item_name": "storage_cabinet",
+      "category": "fixed",
+      "x_m": 3.5,
+      "y_m": 2.6,
+      "orientation": "north",
+      "utilities": [],
+      "clearance_m": 0.6,
+      "justification": "Adjacent to sink for cleaning supplies storage"
+    },
+    {
+      "item_name": "analytical_balance",
+      "category": "movable",
+      "x_m": 0.5,
+      "y_m": 1.8,
+      "orientation": "north",
+      "utilities": [
+        "electricity"
+      ],
+      "clearance_m": 0.5,
+      "justification": "Stable location near work bench but not under fume hood"
+    },
+    {
+      "item_name": "hot_plate",
+      "category": "movable",
+      "x_m": 1.5,
+      "y_m": 1.8,
+      "orientation": "north",
+      "utilities": [
+        "electricity"
+      ],
+      "clearance_m": 0.4,
+      "justification": "Heating station near fume hood workflow"
+    },
+    {
+      "item_name": "eyewash_station",
+      "category": "safety",
+      "x_m": 4.0,
+      "y_m": 0.5,
+      "orientation": "east",
+      "utilities": [
+        "water"
+      ],
+      "clearance_m": 0.8,
+      "justification": "Accessible emergency equipment near chemical handling area"
+    },
+    {
+      "item_name": "fire_extinguisher",
+      "category": "safety",
+      "x_m": 0.2,
+      "y_m": 0.2,
+      "orientation": "south",
+      "utilities": [],
+      "clearance_m": 0.6,
+      "justification": "Visible and accessible near room entrance"
+    }
+  ],
+  "recommendations": "Cannot place all small movable equipment due to space constraints. Remaining items (beakers, flasks, filtration equipment, tongs, gloves, etc.) should be stored in the storage cabinet and brought to work surfaces as needed. Consider mobile carts for additional flexible workspace."
+}

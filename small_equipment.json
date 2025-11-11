@@ -1,0 +1,489 @@
+[
+  {
+    "id": "pipette_single_channel",
+    "name": "单道移液器 (20-200μL)",
+    "category": "SmallApparatus",
+    "dimensions_2d": {
+      "width": 3,
+      "depth": 20
+    },
+    "properties": {
+      "movable": true,
+      "required_clearance": {
+        "front": 5,
+        "sides": 2,
+        "rear": 2
+      },
+      "connections": []
+    }
+  },
+  {
+    "id": "magnetic_stirrer_basic",
+    "name": "磁力搅拌器",
+    "category": "SmallApparatus",
+    "dimensions_2d": {
+      "width": 15,
+      "depth": 20
+    },
+    "properties": {
+      "movable": true,
+      "required_clearance": {
+        "front": 10,
+        "sides": 5,
+        "rear": 5
+      },
+      "connections": ["electricity"]
+    }
+  },
+  {
+    "id": "mini_centrifuge",
+    "name": "小型离心机",
+    "category": "SmallApparatus",
+    "dimensions_2d": {
+      "width": 25,
+      "depth": 30
+    },
+    "properties": {
+      "movable": true,
+      "required_clearance": {
+        "front": 20,
+        "sides": 10,
+        "rear": 10
+      },
+      "connections": ["electricity"]
+    }
+  },
+  {
+    "id": "beaker_250ml",
+    "name": "烧杯 (250mL)",
+    "category": "SmallApparatus",
+    "dimensions_2d": {
+      "width": 8,
+      "depth": 8
+    },
+    "properties": {
+      "movable": true,
+      "required_clearance": {
+        "front": 10,
+        "sides": 5,
+        "rear": 5
+      },
+      "connections": []
+    }
+  },
+  {
+    "id": "erlenmeyer_flask_250ml",
+    "name": "锥形瓶 (250mL)",
+    "category": "SmallApparatus",
+    "dimensions_2d": {
+      "width": 9,
+      "depth": 9
+    },
+    "properties": {
+      "movable": true,
+      "required_clearance": {
+        "front": 10,
+        "sides": 5,
+        "rear": 5
+      },
+      "connections": []
+    }
+  },
+  {
+    "id": "test_tube_rack_6",
+    "name": "试管架 (含6支试管)",
+    "category": "SmallApparatus",
+    "dimensions_2d": {
+      "width": 20,
+      "depth": 8
+    },
+    "properties": {
+      "movable": true,
+      "required_clearance": {
+        "front": 15,
+        "sides": 5,
+        "rear": 5
+      },
+      "connections": []
+    }
+  },
+  {
+    "id": "alcohol_lamp",
+    "name": "酒精灯",
+    "category": "SmallApparatus",
+    "dimensions_2d": {
+      "width": 8,
+      "depth": 8
+    },
+    "properties": {
+      "movable": true,
+      "required_clearance": {
+        "front": 20,
+        "sides": 20,
+        "rear": 10
+      },
+      "connections": []
+    }
+  },
+  {
+    "id": "glass_rod_storage",
+    "name": "玻璃棒 (存放于烧杯中)",
+    "category": "SmallApparatus",
+    "dimensions_2d": {
+      "width": 7,
+      "depth": 7
+    },
+    "properties": {
+      "movable": true,
+      "required_clearance": {
+        "front": 10,
+        "sides": 5,
+        "rear": 5
+      },
+      "connections": []
+    }
+  },
+  {
+    "id": "iron_support_stand",
+    "name": "铁架台 (带底座)",
+    "category": "SmallApparatus",
+    "dimensions_2d": {
+      "width": 15,
+      "depth": 25
+    },
+    "properties": {
+      "movable": true,
+      "required_clearance": {
+        "front": 30,
+        "sides": 10,
+        "rear": 10
+      },
+      "connections": []
+    }
+  },
+  {
+    "id": "graduated_cylinder_100ml",
+    "name": "量筒 (100mL)",
+    "category": "SmallApparatus",
+    "dimensions_2d": {
+      "width": 6,
+      "depth": 6
+    },
+    "properties": {
+      "movable": true,
+      "required_clearance": {
+        "front": 10,
+        "sides": 5,
+        "rear": 5
+      },
+      "connections": []
+    }
+  },
+  {
+    "id": "funnel_glass",
+    "name": "玻璃漏斗",
+    "category": "SmallApparatus",
+    "dimensions_2d": {
+      "width": 10,
+      "depth": 10
+    },
+    "properties": {
+      "movable": true,
+      "required_clearance": {
+        "front": 5,
+        "sides": 5,
+        "rear": 5
+      },
+      "connections": []
+    }
+  },
+  {
+    "id": "analytical_balance",
+    "name": "分析天平",
+    "category": "SmallApparatus",
+    "dimensions_2d": {
+      "width": 25,
+      "depth": 35
+    },
+    "properties": {
+      "movable": true,
+      "required_clearance": {
+        "front": 20,
+        "sides": 15,
+        "rear": 10
+      },
+      "connections": ["electricity"]
+    }
+  },
+  {
+    "id": "vortex_mixer",
+    "name": "涡旋混合器",
+    "category": "SmallApparatus",
+    "dimensions_2d": {
+      "width": 15,
+      "depth": 15
+    },
+    "properties": {
+      "movable": true,
+      "required_clearance": {
+        "front": 15,
+        "sides": 10,
+        "rear": 5
+      },
+      "connections": ["electricity"]
+    }
+  },
+  {
+    "id": "ph_meter_benchtop",
+    "name": "台式pH计",
+    "category": "SmallApparatus",
+    "dimensions_2d": {
+      "width": 20,
+      "depth": 25
+    },
+    "properties": {
+      "movable": true,
+      "required_clearance": {
+        "front": 20,
+        "sides": 10,
+        "rear": 5
+      },
+      "connections": ["electricity"]
+    }
+  },
+  {
+    "id": "heating_mantle_500ml",
+    "name": "电热套 (500mL)",
+    "category": "SmallApparatus",
+    "dimensions_2d": {
+      "width": 25,
+      "depth": 25
+    },
+    "properties": {
+      "movable": true,
+      "required_clearance": {
+        "front": 15,
+        "sides": 15,
+        "rear": 10
+      },
+      "connections": ["electricity"]
+    }
+  },
+  {
+    "id": "water_bath_small",
+    "name": "小型水浴锅",
+    "category": "SmallApparatus",
+    "dimensions_2d": {
+      "width": 30,
+      "depth": 20
+    },
+    "properties": {
+      "movable": true,
+      "required_clearance": {
+        "front": 15,
+        "sides": 10,
+        "rear": 10
+      },
+      "connections": ["electricity"]
+    }
+  },
+  {
+    "id": "hot_plate_stirrer",
+    "name": "加热磁力搅拌器 (电加热板)",
+    "category": "SmallApparatus",
+    "dimensions_2d": {
+      "width": 20,
+      "depth": 30
+    },
+    "properties": {
+      "movable": true,
+      "required_clearance": {
+        "front": 20,
+        "sides": 15,
+        "rear": 10
+      },
+      "connections": ["electricity"]
+    }
+  },
+  {
+    "id": "buchner_funnel_kit",
+    "name": "布氏漏斗及抽滤瓶套装",
+    "category": "SmallApparatus",
+    "dimensions_2d": {
+      "width": 15,
+      "depth": 15
+    },
+    "properties": {
+      "movable": true,
+      "required_clearance": {
+        "front": 20,
+        "sides": 10,
+        "rear": 10
+      },
+      "connections": ["vacuum"]
+    }
+  },
+  {
+    "id": "wash_bottle_500ml",
+    "name": "洗瓶 (500mL)",
+    "category": "SmallApparatus",
+    "dimensions_2d": {
+      "width": 8,
+      "depth": 8
+    },
+    "properties": {
+      "movable": true,
+      "required_clearance": {
+        "front": 10,
+        "sides": 5,
+        "rear": 5
+      },
+      "connections": []
+    }
+  },
+  {
+    "id": "volumetric_flask_250ml",
+    "name": "容量瓶 (250mL)",
+    "category": "SmallApparatus",
+    "dimensions_2d": {
+      "width": 10,
+      "depth": 10
+    },
+    "properties": {
+      "movable": true,
+      "required_clearance": {
+        "front": 10,
+        "sides": 5,
+        "rear": 5
+      },
+      "connections": []
+    }
+  },
+  {
+    "id": "burette_50ml",
+    "name": "滴定管 (50mL)",
+    "category": "SmallApparatus",
+    "dimensions_2d": {
+      "width": 4,
+      "depth": 4
+    },
+    "properties": {
+      "movable": true,
+      "required_clearance": {
+        "front": 15,
+        "sides": 5,
+        "rear": 5
+      },
+      "connections": []
+    }
+  },
+  {
+    "id": "evaporating_dish",
+    "name": "蒸发皿",
+    "category": "SmallApparatus",
+    "dimensions_2d": {
+      "width": 10,
+      "depth": 10
+    },
+    "properties": {
+      "movable": true,
+      "required_clearance": {
+        "front": 10,
+        "sides": 10,
+        "rear": 5
+      },
+      "connections": []
+    }
+  },
+  {
+    "id": "watch_glass",
+    "name": "表面皿",
+    "category": "SmallApparatus",
+    "dimensions_2d": {
+      "width": 10,
+      "depth": 10
+    },
+    "properties": {
+      "movable": true,
+      "required_clearance": {
+        "front": 5,
+        "sides": 5,
+        "rear": 5
+      },
+      "connections": []
+    }
+  },
+  {
+    "id": "spatula_set_storage",
+    "name": "药匙套装 (存放架)",
+    "category": "SmallApparatus",
+    "dimensions_2d": {
+      "width": 10,
+      "depth": 5
+    },
+    "properties": {
+      "movable": true,
+      "required_clearance": {
+        "front": 10,
+        "sides": 5,
+        "rear": 5
+      },
+      "connections": []
+    }
+  },
+  {
+    "id": "digital_timer",
+    "name": "电子计时器",
+    "category": "SmallApparatus",
+    "dimensions_2d": {
+      "width": 7,
+      "depth": 3
+    },
+    "properties": {
+      "movable": true,
+      "required_clearance": {
+        "front": 10,
+        "sides": 5,
+        "rear": 5
+      },
+      "connections": []
+    }
+  },
+  {
+    "id": "benchtop_drying_oven",
+    "name": "台式干燥箱",
+    "category": "SmallApparatus",
+    "dimensions_2d": {
+      "width": 40,
+      "depth": 35
+    },
+    "properties": {
+      "movable": true,
+      "required_clearance": {
+        "front": 30,
+        "sides": 10,
+        "rear": 10
+      },
+      "connections": ["electricity"]
+    }
+  },
+  {
+    "id": "desiccator_small",
+    "name": "干燥器 (小型)",
+    "category": "SmallApparatus",
+    "dimensions_2d": {
+      "width": 25,
+      "depth": 25
+    },
+    "properties": {
+      "movable": true,
+      "required_clearance": {
+        "front": 15,
+        "sides": 10,
+        "rear": 10
+      },
+      "connections": []
+    }
+  }
+
+]

@@ -1,0 +1,125 @@
+{
+  "room": {
+    "width_m": 5.0,
+    "depth_m": 4.0,
+    "units": "meters"
+  },
+  "placements": [
+    {
+      "item_name": "边实验台（靠墙）(240cm)",
+      "category": "Workstation",
+      "x_m": 0.0,
+      "y_m": 0.0,
+      "orientation": "north",
+      "utilities": [
+        "electricity",
+        "water"
+      ],
+      "clearance_m": 1.0,
+      "justification": "Fixed wall bench along north wall for utility connections"
+    },
+    {
+      "item_name": "实验室冰箱 (标准单门)",
+      "category": "Storage",
+      "x_m": 2.4,
+      "y_m": 0.0,
+      "orientation": "north",
+      "utilities": [
+        "electricity"
+      ],
+      "clearance_m": 0.8,
+      "justification": "Against north wall next to bench, accessible from front"
+    },
+    {
+      "item_name": "超低温冰箱 (-80°C)",
+      "category": "Storage",
+      "x_m": 3.1,
+      "y_m": 0.0,
+      "orientation": "north",
+      "utilities": [
+        "electricity",
+        "backup_power"
+      ],
+      "clearance_m": 1.0,
+      "justification": "Against north wall, requires significant clearance for ventilation"
+    },
+    {
+      "item_name": "生物安全柜 (B2型, 120cm)",
+      "category": "Workstation/Safety",
+      "x_m": 0.0,
+      "y_m": 3.1,
+      "orientation": "south",
+      "utilities": [
+        "electricity",
+        "ventilation_external"
+      ],
+      "clearance_m": 1.2,
+      "justification": "Against west wall with front access facing room interior"
+    },
+    {
+      "item_name": "防震天平桌",
+      "category": "Workstation",
+      "x_m": 1.3,
+      "y_m": 3.1,
+      "orientation": "south",
+      "utilities": [],
+      "clearance_m": 0.8,
+      "justification": "Isolated from vibration sources, accessible from front"
+    },
+    {
+      "item_name": "三层实验推车",
+      "category": "Utility",
+      "x_m": 4.2,
+      "y_m": 0.8,
+      "orientation": "east",
+      "utilities": [],
+      "clearance_m": 0.1,
+      "justification": "Movable cart in corner for flexible use"
+    },
+    {
+      "item_name": "废液收集桶 (20L)",
+      "category": "Utility/Safety",
+      "x_m": 4.2,
+      "y_m": 1.3,
+      "orientation": "east",
+      "utilities": [],
+      "clearance_m": 0.3,
+      "justification": "Safety container in corner with adequate clearance"
+    },
+    {
+      "item_name": "单道移液器 (20-200μL)",
+      "category": "SmallApparatus",
+      "x_m": 0.1,
+      "y_m": 0.8,
+      "orientation": "north",
+      "utilities": [],
+      "clearance_m": 0.05,
+      "justification": "Small apparatus on bench space"
+    },
+    {
+      "item_name": "磁力搅拌器",
+      "category": "SmallApparatus",
+      "x_m": 0.3,
+      "y_m": 0.8,
+      "orientation": "north",
+      "utilities": [
+        "electricity"
+      ],
+      "clearance_m": 0.1,
+      "justification": "On bench with electrical access"
+    },
+    {
+      "item_name": "小型离心机",
+      "category": "SmallApparatus",
+      "x_m": 0.6,
+      "y_m": 0.8,
+      "orientation": "north",
+      "utilities": [
+        "electricity"
+      ],
+      "clearance_m": 0.2,
+      "justification": "On bench with required operational clearance"
+    }
+  ],
+  "recommendations": "气相色谱-质谱联用仪 (GC-MS) could not be placed due to insufficient room space and clearance requirements. Consider relocating to a larger laboratory or removing one large equipment item to accommodate."
+}

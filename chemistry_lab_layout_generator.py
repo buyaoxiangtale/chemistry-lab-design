@@ -3,6 +3,7 @@ import json
 import os
 import re
 from datetime import datetime
+from typing import Dict, Tuple
 
 # Import existing module that holds client and generator
 import chemistry_lab_agent_new as cla
@@ -156,7 +157,51 @@ def generate_layout(experiment_name: str, large_equipment: dict, small_equipment
             })
         return sample
 
-    system_message = "You are an expert laboratory planner with knowledge of safety codes, ventilation, utilities, and ergonomic placement of laboratory equipment."
+    system_message = """You are an expert laboratory planner with knowledge of safety codes, ventilation, utilities, and ergonomic placement of laboratory equipment.
+
+     IMPORTANT: The JSON layout you will produce must satisfy a strict non-overlap constraint for all placed items.
+
+     Requirements (enforce these exactly):
+     1) Coordinates and units
+         - All coordinates must be provided in meters.
+         - Use the lower-left corner of the item's footprint as (x_m, y_m) (origin (0,0) is the room south-west corner).
+         - If the model cannot place an item without violating non-overlap or room bounds, set its x_m and y_m to null and explain why in the "recommendations" field.
+
+     2) Footprint and clearance calculation
+         - Each equipment item includes dimensions in the large_equipment/small_equipment objects as `dimensions_2d.width` and `dimensions_2d.depth` (units: centimeters).
+         - Convert these to meters by dividing by 100.0 before computing footprints.
+         - The item's footprint rectangle runs from:
+              x_min = x_m
+              x_max = x_m + width_m
+              y_min = y_m
+              y_max = y_m + depth_m
+         - Each item also has a per-item clearance value to be applied as an extra buffer (clearance_m). When testing overlaps, expand the footprint by clearance_m on all sides:
+              x_min_buf = x_min - clearance_m
+              x_max_buf = x_max + clearance_m
+              y_min_buf = y_min - clearance_m
+              y_max_buf = y_max + clearance_m
+
+     3) Non-overlap constraint (hard requirement)
+         - For every pair of placed items A and B with numeric coordinates, their buffered footprints must NOT intersect. In other words, for each pair A,B at least one of the following must be true:
+              A.x_max_buf <= B.x_min_buf
+              A.x_min_buf >= B.x_max_buf
+              A.y_max_buf <= B.y_min_buf
+              A.y_min_buf >= B.y_max_buf
+         - If any pair would overlap, do NOT place one of them at numeric coordinates; instead set that item's x_m and y_m to null and include it under "recommendations" with a brief explanation.
+
+     4) Room bounds
+         - All placed items with numeric coordinates must lie fully inside the room boundaries when considering the buffered footprint. If an item would exceed room bounds, do not place it; set x_m/y_m to null and add to recommendations.
+
+     5) Output format
+         - Return ONLY a single JSON object conforming to the schema provided in the user prompt. Do not include any extra commentary or text.
+         - For items you do place, supply numeric x_m and y_m (lower-left corner), orientation, utilities and a sensible clearance_m (number). For items you cannot place, set x_m/y_m to null and describe why in recommendations.
+
+     6) Placement strategy hints (follow but don't repeat in output):
+         - Place fixed equipment aligned to walls where appropriate.
+         - Keep safety-related equipment (eyewash, fire extinguisher) accessible and near exits.
+         - Prefer grouping equipment that need the same utilities (water, electricity) but do not violate non-overlap.
+
+     Enforce these constraints deterministically and strictly when generating the JSON layout."""
 
     try:
         response = client.chat.completions.create(
@@ -184,6 +229,70 @@ def save_layout(output_path: str, layout: dict) -> str:
     with open(output_path, 'w', encoding='utf-8') as f:
         json.dump(layout, f, ensure_ascii=False, indent=2)
     return output_path
+
+
+def calculate_bounding_box(equipment: Dict, placement: Dict) -> Tuple[float, float, float, float]:
+    """
+    计算设备的实际占用区（本体尺寸+四周required_clearance）
+    返回: (cx, cy, width, height)
+    """
+    # 本体尺寸（厘米）
+    width_cm = equipment['dimensions_2d']['width']
+    depth_cm = equipment['dimensions_2d']['depth']
+    # 四周间隙（厘米），默认为0
+    clearance = equipment.get('properties', {}).get('required_clearance', {})
+    left = clearance.get('left', clearance.get('sides', 0)) or 0
+    right = clearance.get('right', clearance.get('sides', 0)) or 0
+    front = clearance.get('front', 0) or 0
+    rear = clearance.get('rear', 0) or 0
+
+    # 转换为米
+    width_m = width_cm / 100.0
+    depth_m = depth_cm / 100.0
+    left_m = left / 100.0
+    right_m = right / 100.0
+    front_m = front / 100.0
+    rear_m = rear / 100.0
+
+    # 设备左下角坐标
+    x_m = float(placement['x_m'])
+    y_m = float(placement['y_m'])
+
+    # 方向调整
+    orientation = placement.get('orientation', 'north')
+    if orientation in ['east', 'west']:
+        width_m, depth_m = depth_m, width_m
+        left_m, rear_m, right_m, front_m = rear_m, right_m, front_m, left_m
+
+    # 实际占用区
+    x_min = x_m - left_m
+    x_max = x_m + width_m + right_m
+    y_min = y_m - rear_m
+    y_max = y_m + depth_m + front_m
+
+    cx = (x_min + x_max) / 2
+    cy = (y_min + y_max) / 2
+    actual_width = x_max - x_min
+    actual_depth = y_max - y_min
+
+    # 记录本体尺寸
+    width_m = equipment['dimensions_2d']['width'] / 100.0
+    depth_m = equipment['dimensions_2d']['depth'] / 100.0
+    # 创建结果字典
+    box_info = {
+        'name': equipment['name'],
+        'category': equipment['category'],
+        'bounding_box': {
+            'center_x': cx,
+            'center_y': cy,
+            'width': actual_width,
+            'height': actual_depth,
+            'body_width': width_m,
+            'body_depth': depth_m
+        },
+    }
+
+    return box_info
 
 
 def main():
@@ -219,6 +328,65 @@ def main():
             print(f"Small equipment file not found: {args.small_equipment_file}; attempting to generate via model.")
 
     experiment = args.experiment or input('Experiment name: ').strip()
+
+    # Generate experiment-specific equipment list from AI model
+    print(f"\nGenerating equipment list for '{experiment}' experiment...")
+    try:
+        exp_large, exp_small = cla.generate_chemistry_lab(experiment)
+        print(f"  - AI generated {len(exp_large)} large equipment items")
+        print(f"  - AI generated {len(exp_small)} small equipment items")
+    except Exception as e:
+        print(f"Warning: Could not generate equipment list via model: {e}")
+        exp_large, exp_small = {}, {}
+
+    # Match generated equipment names with available equipment in JSON files
+    def match_equipment(exp_equipment_dict, available_equipment, category_name):
+        """
+        Match experiment-required equipment with available equipment.
+        Returns filtered equipment that is in both exp_equipment_dict and available_equipment
+        """
+        matched = {}
+        unmatched = []
+        
+        for exp_name in exp_equipment_dict.keys():
+            # Try exact match first
+            if exp_name in available_equipment:
+                matched[exp_name] = available_equipment[exp_name]
+                continue
+            
+            # Try case-insensitive match
+            found = False
+            exp_name_lower = exp_name.lower()
+            for avail_name, avail_data in available_equipment.items():
+                if exp_name_lower == avail_name.lower():
+                    matched[exp_name] = avail_data
+                    found = True
+                    break
+            
+            # Try substring match (if exp_name is substring of available name)
+            if not found:
+                for avail_name, avail_data in available_equipment.items():
+                    if exp_name_lower in avail_name.lower():
+                        matched[exp_name] = avail_data
+                        found = True
+                        break
+            
+            if not found:
+                unmatched.append(exp_name)
+        
+        if unmatched:
+            print(f"  Note: Could not find {category_name} items in library: {', '.join(unmatched)}")
+        
+        return matched
+
+    # Filter equipment based on experiment requirements
+    if exp_large:
+        large_equipment = match_equipment(exp_large, large_equipment, "large equipment")
+        print(f"  Matched {len(large_equipment)} large equipment items from library")
+
+    if exp_small:
+        small_equipment = match_equipment(exp_small, small_equipment, "small equipment")
+        print(f"  Matched {len(small_equipment)} small equipment items from library")
 
     # Load constraints: structured file preferred
     constraints = {'raw': ''}

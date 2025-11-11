@@ -1,0 +1,41 @@
+[
+  {
+    "id": "lab_bench_side_240",
+    "name": "边实验台（靠墙）(240cm)",
+    "category": "Workstation",
+    "dimensions_2d": {
+      "width": 240,
+      "depth": 75
+    },
+    "properties": {
+      "movable": false,
+      "required_clearance": {
+        "front": 100,
+        "sides": 10,
+        "rear": 0
+      },
+      "connections": [
+        "electricity",
+        "water"
+      ]
+    }
+  },
+  {
+    "id": "balance_table_anti_vibration",
+    "name": "防震天平桌",
+    "category": "Workstation",
+    "dimensions_2d": {
+      "width": 90,
+      "depth": 60
+    },
+    "properties": {
+      "movable": false,
+      "required_clearance": {
+        "front": 80,
+        "sides": 30,
+        "rear": 30
+      },
+      "connections": []
+    }
+  }
+]

@@ -1,0 +1,97 @@
+{
+  "room_constraints": {
+    "walls": {
+      "north": [
+        {
+          "type": "utility",
+          "item": "fume_hood",
+          "reason": "需要通风管道连接外部"
+        },
+        {
+          "type": "utility",
+          "item": "sink",
+          "reason": "水管和排水管连接需求"
+        }
+      ],
+      "south": [
+        {
+          "type": "access",
+          "item": "door",
+          "reason": "主要出入口"
+        }
+      ],
+      "east": [],
+      "west": []
+    }
+  },
+  "equipment_constraints": {
+    "adjacency": [
+      {
+        "items": ["fume_hood", "work_bench"],
+        "reason": "通风橱附近需要工作台以便准备样品"
+      },
+      {
+        "items": ["sink", "storage_cabinet"],
+        "reason": "水槽附近需要储物柜存放清洁用品"
+      }
+    ],
+    "clearance": [
+      {
+        "item": "fume_hood",
+        "min_clearance_m": 1.2,
+        "reason": "操作空间和安全距离要求"
+      },
+      {
+        "item": "sink",
+        "min_clearance_m": 0.8,
+        "reason": "清洗操作需要足够空间"
+      },
+      {
+        "item": "door",
+        "min_clearance_m": 1.0,
+        "reason": "紧急疏散通道要求"
+      }
+    ]
+  },
+  "safety_constraints": {
+    "emergency_equipment": {
+      "eyewash_station": {
+        "max_distance_m": 10.0,
+        "reason": "需要在化学品操作区域附近"
+      },
+      "fire_extinguisher": {
+        "max_distance_m": 15.0,
+        "reason": "需要容易接近且明显可见"
+      }
+    },
+    "circulation": {
+      "min_aisle_width_m": 0.9,
+      "reason": "确保人员和设备可以安全通过"
+    }
+  },
+  "workflow_constraints": {
+    "process_sequence": [
+      {
+        "step": "样品准备",
+        "equipment": ["work_bench", "balance"],
+        "notes": "需要靠近但不直接在通风橱下"
+      },
+      {
+        "step": "溶解过滤",
+        "equipment": ["fume_hood", "filtration_setup"],
+        "notes": "在通风橱中进行"
+      },
+      {
+        "step": "清洗",
+        "equipment": ["sink"],
+        "notes": "需要清洗玻璃器皿"
+      },
+      {
+        "step": "结晶干燥",
+        "equipment": ["drying_oven"],
+        "notes": "远离水源"
+      }
+    ]
+  },
+  "raw": "通风橱必须安装在北墙以便通风; 水槽安装在北墙便于给排水; 工作台靠近通风橱; 门在南墙; 留出足够的操作和安全通道"
+}
