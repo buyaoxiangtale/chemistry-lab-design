@@ -6,15 +6,15 @@ from chemistry_lab.equipment import parse_equipment_response
 SAMPLE_RESPONSE = """\
 Here is the equipment list:
 
-Category 1 - Large Fixed Equipment and Installations:
+**Category 1 - Large Fixed Equipment and Installations:**
 
-* **Fume Hood** - For handling volatile chemicals
-* **Lab Bench** - Primary workspace
+* **Fume Hood** - For handling volatile chemicals, requires ventilation
+* **Lab Bench** - Primary workspace, chemical resistant surface
 
-Category 2 - Small Containers and Instruments:
+**Category 2 - Small Containers and Instruments:**
 
-* **Beaker** - For mixing solutions
-* **Thermometer** - Temperature measurement
+* **Beaker** - 500ml glass beaker for mixing solutions
+* **Thermometer** - Mercury thermometer for temperature measurement
 """
 
 
