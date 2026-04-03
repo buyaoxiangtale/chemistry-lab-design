@@ -5,7 +5,6 @@ from __future__ import annotations
 import argparse
 import json
 import os
-import sys
 from datetime import datetime
 
 from chemistry_lab.client import create_client

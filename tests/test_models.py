@@ -1,6 +1,6 @@
 """Tests for chemistry_lab.models."""
 
-from chemistry_lab.models import Layout, Placement, Room
+from chemistry_lab.models import Layout, Room
 
 
 class TestRoom:

@@ -35,9 +35,19 @@ def parse_equipment_response(response_text: str) -> Tuple[Dict[str, str], Dict[s
     current_category: str | None = None
     current_item: str | None = None
     current_description: list[str] = []
-    saw_category = False
+    lines = [ln.rstrip() for ln in response_text.split("\n")]
 
-    lines = [l.rstrip() for l in response_text.split("\n")]
+    def _save_current() -> None:
+        nonlocal current_item, current_description
+        if current_item and current_description:
+            desc = " ".join(current_description).strip()
+            target = (
+                large_equipment
+                if current_category == "large"
+                else small_equipment
+            )
+            target[current_item] = desc
+
     for raw in lines:
         line = raw.strip()
         if not line or set(line).issubset({"-", "=", "#", " "}):
@@ -55,8 +65,8 @@ def parse_equipment_response(response_text: str) -> Tuple[Dict[str, str], Dict[s
                 "category one",
             ]
         ):
+            _save_current()
             current_category = "large"
-            saw_category = True
             current_item = None
             current_description = []
             continue
@@ -69,8 +79,8 @@ def parse_equipment_response(response_text: str) -> Tuple[Dict[str, str], Dict[s
                 "category two",
             ]
         ):
+            _save_current()
             current_category = "small"
-            saw_category = True
             current_item = None
             current_description = []
             continue
@@ -82,17 +92,6 @@ def parse_equipment_response(response_text: str) -> Tuple[Dict[str, str], Dict[s
             line,
         )
         m_bullet_name_only = re.match(r"^[*\-\u2022\d. ]+\s*(?P<name>.+?)$", line)
-
-        def _save_current() -> None:
-            nonlocal current_item, current_description
-            if current_item and current_description:
-                desc = " ".join(current_description).strip()
-                target = (
-                    large_equipment
-                    if current_category == "large"
-                    else small_equipment
-                )
-                target[current_item] = desc
 
         if m_bold:
             _save_current()

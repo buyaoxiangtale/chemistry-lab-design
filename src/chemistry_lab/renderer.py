@@ -6,7 +6,7 @@ import json
 import os
 import sys
 from datetime import datetime
-from typing import Dict, List, Optional, Tuple
+from typing import Dict, Optional
 
 import matplotlib
 
