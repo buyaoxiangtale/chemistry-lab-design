@@ -1,4 +1,47 @@
-.venv/
-output/
-.env
+# Python
 __pycache__/
+*.py[cod]
+*$py.class
+*.so
+*.egg-info/
+*.egg
+dist/
+build/
+eggs/
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Environment / secrets
+.env
+.env.*
+
+# Output
+output/
+*.png
+!docs/assets/*.png
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Generated layout / design files
+crude_salt_purification_layout_*.json
+crude_salt_purification_room_design_*.txt
+crude_salt_purification_*_equipment*.json
+crude_salt_purification_equipment.txt
+equipment_bounding_boxes*.json
+lab_layout_visualization_*.png
+
+# Test / coverage
+.pytest_cache/
+htmlcov/
+.coverage
