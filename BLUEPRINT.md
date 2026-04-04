@@ -23,29 +23,29 @@
 
 ## 执行清单
 
-### Phase 1: 项目结构规范化
-- [ ] 创建标准 Python 包结构 `src/chemistry_lab/`，将功能模块化拆分
-- [ ] 添加 `pyproject.toml`，配置项目元数据、依赖管理、入口点
-- [ ] 移除 `requirements.txt`，改用 `pyproject.toml` 管理依赖
-- [ ] 创建 `tests/` 目录，添加基础测试框架（pytest）
-- [ ] 添加 `.gitignore`（完善现有的，覆盖 `__pycache__/`, `.venv/`, `output/`, `*.pyc`, `.env` 等）
-- [ ] 添加 `CONTRIBUTING.md` 或 `Makefile`，标准化开发工作流（lint、test、run）
+### Phase 1: 项目结构规范化 ✅
+- [x] 创建标准 Python 包结构 `src/chemistry_lab/`，将功能模块化拆分
+- [x] 添加 `pyproject.toml`，配置项目元数据、依赖管理、入口点
+- [x] 移除 `requirements.txt`，改用 `pyproject.toml` 管理依赖
+- [x] 创建 `tests/` 目录，添加基础测试框架（pytest）
+- [x] 添加 `.gitignore`（完善现有的，覆盖 `__pycache__/`, `.venv/`, `output/`, `*.pyc`, `.env` 等）
+- [x] 添加 `CONTRIBUTING.md` 或 `Makefile`，标准化开发工作流（lint、test、run）
 
 ### Phase 2: 安全与配置
-- [ ] 将所有硬编码 API Key 移至环境变量（`CHEM_LAB_API_KEY`、`CHEM_LAB_BASE_URL`）
-- [ ] 创建 `config.py` 统一管理配置（API 配置、默认房间尺寸、模型参数等）
+- [x] 将所有硬编码 API Key 移至环境变量（`CHEM_LAB_API_KEY`、`CHEM_LAB_BASE_URL`）
+- [x] 创建 `config.py` 统一管理配置（API 配置、默认房间尺寸、模型参数等）
 - [ ] 添加 `.env.example` 文件，列出所有需要的环境变量及说明
 - [ ] 确保 `.env` 被 `.gitignore` 排除
 
-### Phase 3: 模块解耦与重构
-- [ ] 创建 `client.py`：封装 LLM 客户端初始化，支持依赖注入和环境变量配置
-- [ ] 创建 `equipment.py`：从 `chemistry_lab_agent_new.py` 提取设备清单生成逻辑
-- [ ] 创建 `layout.py`：从 `chemistry_lab_layout_generator.py` 提取布局生成逻辑
-- [ ] 创建 `parser.py`：从 `chemistry_lab_layout_generator.py` 提取 `extract_json_from_text()` JSON 解析
-- [ ] 创建 `room.py`：从 `chemistry_lab_room_designer.py` 提取房间设计和约束解析
-- [ ] 创建 `renderer.py`：从 `chemistry_lab_layout_to_image.py` 提取可视化渲染逻辑
-- [ ] 创建 `models.py`：定义设备、布局、房间的数据模型（dataclass 或 Pydantic）
-- [ ] 创建 `cli.py`：统一 CLI 入口，整合所有子命令
+### Phase 3: 模块解耦与重构 ✅
+- [x] 创建 `client.py`：封装 LLM 客户端初始化，支持依赖注入和环境变量配置
+- [x] 创建 `equipment.py`：从 `chemistry_lab_agent_new.py` 提取设备清单生成逻辑
+- [x] 创建 `layout.py`：从 `chemistry_lab_layout_generator.py` 提取布局生成逻辑
+- [x] 创建 `parser.py`：从 `chemistry_lab_layout_generator.py` 提取 `extract_json_from_text()` JSON 解析
+- [x] 创建 `room.py`：从 `chemistry_lab_room_designer.py` 提取房间设计和约束解析
+- [x] 创建 `renderer.py`：从 `chemistry_lab_layout_to_image.py` 提取可视化渲染逻辑
+- [x] 创建 `models.py`：定义设备、布局、房间的数据模型（dataclass 或 Pydantic）
+- [x] 创建 `cli.py`：统一 CLI 入口，整合所有子命令
 - [ ] 删除旧的单体脚本文件（重构完成后）
 
 ### Phase 4: 健壮性提升
@@ -56,11 +56,11 @@
 - [ ] 为 `main()` 函数添加适当的错误处理和日志输出（使用 `logging` 模块替代 `print`）
 
 ### Phase 5: 测试覆盖
-- [ ] 为 `parser.py` 编写单元测试（正常 JSON、嵌套 JSON、含噪声文本的 JSON）
-- [ ] 为 `equipment.py` 编写单元测试（设备分类、响应解析）
-- [ ] 为 `room.py` 编写单元测试（约束解析、默认值）
+- [x] 为 `parser.py` 编写单元测试（正常 JSON、嵌套 JSON、含噪声文本的 JSON）
+- [x] 为 `equipment.py` 编写单元测试（设备分类、响应解析）
+- [x] 为 `room.py` 编写单元测试（约束解析、默认值）
 - [ ] 为碰撞检测编写单元测试（重叠、边缘、正常间距）
-- [ ] 为 CLI 入口编写集成测试（`--dry-run` 模式、参数解析）
+- [x] 为 CLI 入口编写集成测试（`--dry-run` 模式、参数解析）
 - [ ] 为 API 调用编写 mock 测试（使用 `unittest.mock` 模拟 LLM 响应）
 
 ### Phase 6: 文档完善
