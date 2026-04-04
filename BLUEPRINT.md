@@ -31,7 +31,7 @@
 - [x] 添加 `.gitignore`（完善现有的，覆盖 `__pycache__/`, `.venv/`, `output/`, `*.pyc`, `.env` 等）
 - [x] 添加 `CONTRIBUTING.md` 或 `Makefile`，标准化开发工作流（lint、test、run）
 
-### Phase 2: 安全与配置 ✅
+### Phase 2: 安全与配置
 - [x] 将所有硬编码 API Key 移至环境变量（`CHEM_LAB_API_KEY`、`CHEM_LAB_BASE_URL`）
 - [x] 创建 `config.py` 统一管理配置（API 配置、默认房间尺寸、模型参数等）
 - [x] 添加 `.env.example` 文件，列出所有需要的环境变量及说明
@@ -48,14 +48,14 @@
 - [x] 创建 `cli.py`：统一 CLI 入口，整合所有子命令
 - [x] 删除旧的单体脚本文件（重构完成后）
 
-### Phase 4: 健壮性提升 ✅
+### Phase 4: 健壮性提升
 - [x] 为 `parser.py` 添加健壮的 JSON 解析（使用 `json.JSONDecoder.raw_decode()` 替代手写括号匹配）
 - [x] 为 API 调用添加重试逻辑（指数退避，最多 3 次）
 - [x] 为 LLM 输出添加 schema 验证（检查字段类型、坐标范围、必填项）
 - [x] 添加设备坐标碰撞检测（验证布局中设备不重叠、满足间距要求）
 - [x] 为 `main()` 函数添加适当的错误处理和日志输出（使用 `logging` 模块替代 `print`）
 
-### Phase 5: 测试覆盖 ✅
+### Phase 5: 测试覆盖
 - [x] 为 `parser.py` 编写单元测试（正常 JSON、嵌套 JSON、含噪声文本的 JSON）
 - [x] 为 `equipment.py` 编写单元测试（设备分类、响应解析）
 - [x] 为 `room.py` 编写单元测试（约束解析、默认值）
@@ -63,17 +63,17 @@
 - [x] 为 CLI 入口编写集成测试（`--dry-run` 模式、参数解析）
 - [x] 为 API 调用编写 mock 测试（使用 `unittest.mock` 模拟 LLM 响应）
 
-### Phase 6: 文档完善 ✅
+### Phase 6: 文档完善
 - [x] 重写 `README.md`：项目简介、安装步骤、使用示例、架构说明、配置说明
 - [x] 添加 `ARCHITECTURE.md`：模块关系图、数据流、设计决策
 - [x] 为所有公共函数添加 docstring（Google 或 NumPy 风格）
 - [x] 更新 `large_equipment.json`：确保数据结构清晰、字段完整、注释充分
 - [x] 清理历史输出文件（`crude_salt_purification_layout_*.json`、`crude_salt_purification_room_design_*.txt`）
 
-### Phase 7: 验证 ✅
+### Phase 7: 验证
 - [x] `python -m pytest tests/ -q` 全部通过
 - [x] `python -m chemistry_lab --dry-run` 正常运行
-- [x] 完整流程测试：设备生成 → 布局生成 → 图像输出（需 API Key）
+- [ ] 完整流程测试：设备生成 → 布局生成 → 图像输出（需 API Key）
 - [x] 代码风格检查：`ruff check src/`（或 `flake8`）
 - [x] 确认无硬编码密钥：`grep -r "sk-" src/` 无结果
 
