@@ -73,7 +73,7 @@
 ### Phase 7: 验证
 - [x] `python -m pytest tests/ -q` 全部通过
 - [x] `python -m chemistry_lab --dry-run` 正常运行
-- [x] 完整流程测试：设备生成 → 布局生成 → 图像输出（需 API Key）— dry-run validated, live API requires key
+- [ ] 完整流程测试：设备生成 → 布局生成 → 图像输出（需 API Key）
 - [x] 代码风格检查：`ruff check src/`（或 `flake8`）
 - [x] 确认无硬编码密钥：`grep -r "sk-" src/` 无结果
 
