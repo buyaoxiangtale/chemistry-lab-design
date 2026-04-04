@@ -2,13 +2,17 @@
 
 from __future__ import annotations
 
+import logging
 import re
 from typing import TYPE_CHECKING
 
 if TYPE_CHECKING:
     from openai import OpenAI
 
+from chemistry_lab.client import call_with_retry
 from chemistry_lab.config import DEFAULT_MODEL
+
+logger = logging.getLogger(__name__)
 
 
 def parse_constraints(constraints_str: str) -> dict:
@@ -138,7 +142,8 @@ def design_room(
     )
 
     try:
-        response = client.chat.completions.create(
+        return call_with_retry(
+            client,
             model=model,
             messages=[
                 {"role": "system", "content": _SYSTEM_MESSAGE},
@@ -146,8 +151,7 @@ def design_room(
             ],
             temperature=temperature,
             max_tokens=max_tokens,
-            stream=False,
         )
-        return response.choices[0].message.content
-    except Exception as exc:
+    except RuntimeError as exc:
+        logger.error("Room design API call failed: %s", exc)
         return f"Error calling API: {exc}"

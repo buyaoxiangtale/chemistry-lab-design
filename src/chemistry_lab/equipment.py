@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import logging
 import re
 from typing import Dict, Tuple
 
@@ -10,7 +11,10 @@ from typing import TYPE_CHECKING
 if TYPE_CHECKING:
     from openai import OpenAI
 
+from chemistry_lab.client import call_with_retry
 from chemistry_lab.config import DEFAULT_MAX_TOKENS, DEFAULT_MODEL, DEFAULT_TEMPERATURE
+
+logger = logging.getLogger(__name__)
 
 
 # ---- response parsing -------------------------------------------------------
@@ -227,17 +231,14 @@ def generate_equipment(
     Returns:
         ``(large_equipment, small_equipment)`` dicts.
     """
-    try:
-        response = client.chat.completions.create(
-            model=model,
-            messages=[
-                {"role": "system", "content": _SYSTEM_MESSAGE},
-                {"role": "user", "content": _build_user_message(experiment_name)},
-            ],
-            temperature=temperature,
-            max_tokens=max_tokens,
-            stream=False,
-        )
-        return parse_equipment_response(response.choices[0].message.content)
-    except Exception as exc:
-        raise RuntimeError(f"Failed to generate equipment list: {exc}") from exc
+    content = call_with_retry(
+        client,
+        model=model,
+        messages=[
+            {"role": "system", "content": _SYSTEM_MESSAGE},
+            {"role": "user", "content": _build_user_message(experiment_name)},
+        ],
+        temperature=temperature,
+        max_tokens=max_tokens,
+    )
+    return parse_equipment_response(content)
