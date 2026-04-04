@@ -3,16 +3,25 @@
 from __future__ import annotations
 
 import json
-from typing import Dict
+import logging
+from typing import Dict, List
 
 from typing import TYPE_CHECKING
 
 if TYPE_CHECKING:
     from openai import OpenAI
 
+from chemistry_lab.client import call_with_retry
 from chemistry_lab.config import DEFAULT_MODEL
+from chemistry_lab.models import Layout, Placement, Room
 from chemistry_lab.parser import extract_json_from_text
 
+logger = logging.getLogger(__name__)
+
+
+# ---------------------------------------------------------------------------
+# Equipment normalisation
+# ---------------------------------------------------------------------------
 
 def normalize_equipment(equipment) -> Dict:
     """Normalise *equipment* input to a ``{display_name: metadata}`` mapping.
@@ -33,6 +42,10 @@ def normalize_equipment(equipment) -> Dict:
         return out
     return {}
 
+
+# ---------------------------------------------------------------------------
+# Prompt building
+# ---------------------------------------------------------------------------
 
 def build_layout_prompt(
     experiment_name: str,
@@ -124,6 +137,117 @@ coordinates, their buffered footprints must NOT intersect.
 """
 
 
+# ---------------------------------------------------------------------------
+# Schema validation
+# ---------------------------------------------------------------------------
+
+def validate_layout(data: dict) -> List[str]:
+    """Validate a layout dict against the expected schema.
+
+    Returns a list of warning strings (empty if valid).
+    """
+    warnings: List[str] = []
+
+    room = data.get("room")
+    if not isinstance(room, dict):
+        warnings.append("Missing or invalid 'room' object.")
+    else:
+        for key in ("width_m", "depth_m"):
+            val = room.get(key)
+            if val is not None and not isinstance(val, (int, float)):
+                warnings.append(f"room.{key} should be a number, got {type(val).__name__}.")
+            if isinstance(val, (int, float)) and val <= 0:
+                warnings.append(f"room.{key} must be positive, got {val}.")
+
+    placements = data.get("placements", [])
+    if not isinstance(placements, list):
+        warnings.append("'placements' should be a list.")
+        return warnings
+
+    room_w = room.get("width_m", 0) if isinstance(room, dict) else 0
+    room_d = room.get("depth_m", 0) if isinstance(room, dict) else 0
+
+    for i, p in enumerate(placements):
+        if not isinstance(p, dict):
+            warnings.append(f"placements[{i}] is not a dict.")
+            continue
+        for req in ("item_name", "category"):
+            if not p.get(req):
+                warnings.append(f"placements[{i}] missing required field '{req}'.")
+        x, y = p.get("x_m"), p.get("y_m")
+        if x is not None and isinstance(room_w, (int, float)) and room_w > 0:
+            if x < 0 or x > room_w:
+                warnings.append(f"placements[{i}] x_m={x} is outside room width [0, {room_w}].")
+        if y is not None and isinstance(room_d, (int, float)) and room_d > 0:
+            if y < 0 or y > room_d:
+                warnings.append(f"placements[{i}] y_m={y} is outside room depth [0, {room_d}].")
+        clr = p.get("clearance_m")
+        if clr is not None and not isinstance(clr, (int, float)):
+            warnings.append(f"placements[{i}] clearance_m should be a number.")
+
+    return warnings
+
+
+# ---------------------------------------------------------------------------
+# Collision detection
+# ---------------------------------------------------------------------------
+
+def _footprint(x: float, y: float, half_w: float, half_d: float) -> tuple:
+    """Return (x_min, y_min, x_max, y_max) of a rectangular footprint."""
+    return (x - half_w, y - half_d, x + half_w, y + half_d)
+
+
+def _rectangles_overlap(a: tuple, b: tuple) -> bool:
+    """Return True if axis-aligned rectangles *a* and *b* overlap."""
+    return not (a[2] <= b[0] or b[2] <= a[0] or a[3] <= b[1] or b[3] <= a[1])
+
+
+def detect_collisions(
+    placements: List[Placement],
+    room: Room,
+    default_half_w: float = 0.3,
+    default_half_d: float = 0.3,
+) -> List[str]:
+    """Check for overlapping equipment footprints.
+
+    Each placement uses its ``clearance_m`` as a buffer around the default
+    half-dimensions.  Placements with ``None`` coordinates are skipped.
+
+    Args:
+        placements: List of Placement objects.
+        room: Room dimensions.
+        default_half_w: Default half-width in metres when not available.
+        default_half_d: Default half-depth in metres when not available.
+
+    Returns:
+        List of collision warning strings.
+    """
+    footprints: List[tuple[float, float, tuple, str]] = []
+    for p in placements:
+        if p.x_m is None or p.y_m is None:
+            continue
+        buf = p.clearance_m / 2 if p.clearance_m else 0
+        hw = default_half_w + buf
+        hd = default_half_d + buf
+        footprints.append((p.x_m, p.y_m, _footprint(p.x_m, p.y_m, hw, hd), p.item_name))
+
+    collisions: List[str] = []
+    for i in range(len(footprints)):
+        for j in range(i + 1, len(footprints)):
+            x1, y1, fp1, name1 = footprints[i]
+            x2, y2, fp2, name2 = footprints[j]
+            if _rectangles_overlap(fp1, fp2):
+                collisions.append(
+                    f"Collision: '{name1}' ({x1:.2f},{y1:.2f}) overlaps "
+                    f"'{name2}' ({x2:.2f},{y2:.2f})"
+                )
+    return collisions
+
+
+# ---------------------------------------------------------------------------
+# Layout generation
+# ---------------------------------------------------------------------------
+
 def generate_layout(
     experiment_name: str,
     large_equipment: dict,
@@ -192,21 +316,30 @@ def generate_layout(
             )
         return sample
 
-    try:
-        response = client.chat.completions.create(
-            model=model,
-            messages=[
-                {"role": "system", "content": _SYSTEM_MESSAGE},
-                {"role": "user", "content": prompt},
-            ],
-            temperature=0.1,
-            max_tokens=1800,
-            stream=False,
-        )
-        text = response.choices[0].message.content
-        json_text = extract_json_from_text(text)
-        if not json_text:
-            raise ValueError("No JSON object found in model response.")
-        return json.loads(json_text)
-    except Exception as exc:
-        raise RuntimeError(f"Failed to generate layout: {exc}") from exc
+    text = call_with_retry(
+        client,
+        model=model,
+        messages=[
+            {"role": "system", "content": _SYSTEM_MESSAGE},
+            {"role": "user", "content": prompt},
+        ],
+        temperature=0.1,
+        max_tokens=1800,
+    )
+    json_text = extract_json_from_text(text)
+    if not json_text:
+        raise ValueError("No JSON object found in model response.")
+    layout = json.loads(json_text)
+
+    # Schema validation
+    schema_warnings = validate_layout(layout)
+    for w in schema_warnings:
+        logger.warning("Layout schema warning: %s", w)
+
+    # Collision detection
+    layout_obj = Layout.from_dict(layout)
+    collision_warnings = detect_collisions(layout_obj.placements, layout_obj.room)
+    for w in collision_warnings:
+        logger.warning("Layout collision: %s", w)
+
+    return layout

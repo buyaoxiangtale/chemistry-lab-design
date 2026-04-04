@@ -4,7 +4,9 @@ from __future__ import annotations
 
 import argparse
 import json
+import logging
 import os
+import sys
 from datetime import datetime
 
 from chemistry_lab.client import create_client
@@ -12,11 +14,31 @@ from chemistry_lab.equipment import generate_equipment
 from chemistry_lab.layout import generate_layout, normalize_equipment
 from chemistry_lab.room import parse_constraints
 
+logger = logging.getLogger("chemistry_lab")
+
+
+def _setup_logging(verbose: bool = False) -> None:
+    """Configure the root logger for the package.
+
+    Args:
+        verbose: If ``True`` set level to DEBUG; otherwise INFO.
+    """
+    level = logging.DEBUG if verbose else logging.INFO
+    logging.basicConfig(
+        level=level,
+        format="%(asctime)s [%(levelname)s] %(name)s: %(message)s",
+        datefmt="%Y-%m-%d %H:%M:%S",
+    )
+
 
 def _build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(
         prog="chemistry-lab",
         description="Chemistry Lab Layout Generator",
+    )
+    parser.add_argument("--verbose", "-v", action="store_true", help="Enable debug logging")
+    parser.add_argument(
+        "--dry-run", action="store_true", help="Quick smoke-test: generate a placeholder layout (no API call)"
     )
     sub = parser.add_subparsers(dest="command", help="Available sub-commands")
 
@@ -48,7 +70,7 @@ def _cmd_equipment(args: argparse.Namespace) -> None:
     out_path = args.output or f"{args.experiment.replace(' ', '_').lower()}_equipment.json"
     with open(out_path, "w", encoding="utf-8") as fh:
         json.dump(result, fh, ensure_ascii=False, indent=2)
-    print(f"Equipment list saved to: {out_path}")
+    logger.info("Equipment list saved to: %s", out_path)
 
 
 def _cmd_layout(args: argparse.Namespace) -> None:
@@ -95,19 +117,44 @@ def _cmd_layout(args: argparse.Namespace) -> None:
 
     with open(out_path, "w", encoding="utf-8") as fh:
         json.dump(layout, fh, ensure_ascii=False, indent=2)
-    print(f"Layout saved to: {out_path}")
+    logger.info("Layout saved to: %s", out_path)
 
 
 def main(argv: list[str] | None = None) -> None:
+    """Entry point for the chemistry-lab CLI."""
     parser = _build_parser()
     args = parser.parse_args(argv)
 
-    if args.command == "equipment":
-        _cmd_equipment(args)
-    elif args.command == "layout":
-        _cmd_layout(args)
-    else:
-        parser.print_help()
+    _setup_logging(getattr(args, "verbose", False))
+
+    try:
+        if getattr(args, "dry_run", False):
+            logger.info("Dry-run smoke test: generating placeholder layout…")
+            layout = generate_layout(
+                "dry-run test",
+                {"Sample Bench": {"desc": "test"}},
+                {"Beaker": {"desc": "test"}},
+                {"raw": ""},
+                client=None,
+                dry_run=True,
+            )
+            logger.info("Dry-run OK – %d placement(s) generated.", len(layout.get("placements", [])))
+            return
+        if args.command == "equipment":
+            _cmd_equipment(args)
+        elif args.command == "layout":
+            _cmd_layout(args)
+        else:
+            parser.print_help()
+    except FileNotFoundError as exc:
+        logger.error("File not found: %s", exc)
+        sys.exit(1)
+    except KeyError as exc:
+        logger.error("Missing required key: %s", exc)
+        sys.exit(1)
+    except Exception as exc:
+        logger.error("Unexpected error: %s", exc)
+        sys.exit(1)
 
 
 if __name__ == "__main__":
